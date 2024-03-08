@@ -19,6 +19,7 @@ h1 {
     border: 10px solid black;
     background:black;
     border-radius:8px;
+    overflow: auto;
 }
 
 .calculator-buttons {

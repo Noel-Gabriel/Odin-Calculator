@@ -37,7 +37,8 @@ let display_content = "";
 
 let last_result = 0;
 let second_operand = undefined;
-let  op_set = false;
+let op_set = false;
+let after_equal = false;
 
 const display = document.querySelector(".calculator-display");
 
@@ -49,7 +50,11 @@ const equals_btn = document.querySelector(".equals");
 Array.from(digits).forEach(button => button.addEventListener("click", e => {
     let digit = e.target.textContent;
     let current_display = parseFloat(display_content);
-    if(op_set || isNaN(current_display)) {display_content = ""; op_set = false;};
+    if(after_equal || op_set || isNaN(current_display)) {
+        display_content = ""; 
+        op_set = false;
+        after_equal = false;
+    }
     if(current_display != 0) {
         display_content += digit;
     } else {
@@ -93,6 +98,7 @@ equals_btn.addEventListener("click", e => {
         second_operand = undefined;
         display_content = result;
         op_set = false;
+        after_equal = true;
         update_display();
     }
 })
